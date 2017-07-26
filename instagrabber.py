@@ -69,47 +69,46 @@ class User(object):
         :param username: A instagram username (string).
         """
         self._username = username
-        self.data = get_user_data(username)
+        self._data = get_user_data(username)
 
     def get_full_name(self):
         """ Get user full name"""
-        return self.data['user']['full_name']
+        return self._data['user']['full_name']
 
     def get_biography(self):
         """ Get the user biography"""
-        return self.data['user']['biography']
+        return self._data['user']['biography']
 
     def get_external_url(self):
         """ Get user external url"""
-        return self.data['user']['external_url']
+        return self._data['user']['external_url']
 
-    def get_profile_pic(self):
+    def get_profile_pic(self, hd=False):
         """ Get user profile picture """
-        return self.data['user']['profile_pic_url']
-
-    def get_profile_pic_hd(self):
-        """ Get user profile hd picture """
-        return self.data['user']['profile_pic_url_hd']
+        if hd:
+            return self._data['user']['profile_pic_url_hd']
+        else:
+            return self._data['user']['profile_pic_url']
 
     def followed_by(self):
         """ Number of followed users"""
-        return self.data['user']['followed_by']['count']
+        return self._data['user']['followed_by']['count']
 
     def follows(self):
         """ Number of follows"""
-        return self.data['user']['follows']['count']
+        return self._data['user']['follows']['count']
 
     def is_private(self):
         """ Check for private """
-        return self.data['user']['is_private']
+        return self._data['user']['is_private']
 
     def is_verified(self):
         """ Check for verified """
-        return self.data['user']['is_verified']
+        return self._data['user']['is_verified']
 
     def count_of_media(self):
         """ Return count of media """
-        return self.data['user']['media']['count']
+        return self._data['user']['media']['count']
 
     def get_media(self, count=12):
         """ Return user media """
